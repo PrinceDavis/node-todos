@@ -9,6 +9,8 @@ const {Todo} = require('./models/todo');
 const {Tser} = require('./models/user');
 
 const app = express();
+const port = process.env.PORT | 8000;
+
 app.use(bodyParser.json());
 
 app.post('/todos', (req, res) =>{
@@ -43,8 +45,8 @@ app.get('/todos/:id', (req, res) => {
 	}).catch((err) => res.status(400).send({errorMessage: 'Doc not found'}));
 });
 
-app.listen(8000, () => {
-	console.log('Server started on port 8000');
+app.listen(port, () => {
+	console.log(`Server started on port ${port}`);
 });
 
-module.exports = {app}
+module.exports = {app};
