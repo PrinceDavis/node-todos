@@ -42,7 +42,7 @@ app.get('/todos/:id', (req, res) => {
 			return res.status(400).send({errorMessage: 'todo not found'});
 		}
 		return res.send({doc});
-	}).catch((err) => res.status(400).send({errorMessage: 'Doc not found'}));
+	}).catch((err) => res.status(400).send(err));
 });
 
 app.listen(port, () => {
