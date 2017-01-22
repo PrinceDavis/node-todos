@@ -41,8 +41,8 @@ app.get('/todos/:id', (req, res) => {
 		if (!todo) {
 			return res.status(400).send({errorMessage: 'todo not found'});
 		}
-		return res.send({doc});
-	}).catch((err) => res.status(400).send(err));
+		return res.send({todo});
+	}).catch((err) => res.status(400).send({errorMessage: 'todo not found'}));
 });
 
 app.listen(port, () => {
