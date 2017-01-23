@@ -12,7 +12,7 @@ MongoClient.connect('mongodb://localhost:27017/TodoApp', (err, db) =>{
   // });
   // db.collection('Todos').deleteOne({text: 'hello you'}).then((result) =>{
   //   console.log(result);
-  // }, (err) => {
+  // }, (err) => { 
   //   console.log('Unable to delete record', err);
   // });
 
