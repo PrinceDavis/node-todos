@@ -1,5 +1,8 @@
 /*jshint esversion: 6 */
 
+
+require('./config/config');
+ 
 const _ = require('lodash');
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -84,6 +87,18 @@ app.patch('/todos/:id', (req, res) => {
 		return res.send({todo});
 	}).catch((err) => res.status(400).send({errorMessage: 'Todo was not found'}));
 });
+
+//create new user
+app.post('/users', (req, res) => {
+	let body = _.pick(req.body, ['email', 'password', 'name']);
+	let user = new User(body);
+	user.save().then((user) => {
+		if (!user) {
+			return res.status(400).send({errorMessage: 'Unable to create account'});
+		}
+		return res.send({user});
+	}).catch((err) => res.status(400).send({errorMessage: 'Error creating user'}));
+})
 
 //starting app
 app.listen(port, () => {
