@@ -5,21 +5,10 @@ const {ObjectID}  = require('mongodb');
 
 const {app} = require('./../server');
 const {Todo} = require('./../models/todo');
+const {todos, populateTodos, users, populateUsers} = require('./seed/seed');
 
-const todos = [{
-	_id: new ObjectID(),
-	text: 'first test todo'
-}, {
-	_id: new ObjectID(),
-	text: 'Second test todo'
-}];
-
-beforeEach((done) => {
-	Todo.remove({}).then(() => {
-		return Todo.insertMany(todos);
-	}).then(() => done());
-});
-
+beforeEach(populateUsers);
+beforeEach(populateTodos);
 describe('Post /todos', () => {
 	it('Should create a new todo record', (done) => {
 		let text = "Hello from my head";
@@ -81,13 +70,10 @@ describe('get /todos/:id', () => {
 			.end(done());
 	});
 
-	// it('should return a 404 on wrong id', (done) => {
-	// 	request(app)
-	// 		.get(`/todos/${new ObjectID().toHexString()}`)
-	// 		.expect(400)
-	// 		.end(done());
-	// });
+	it('should return a 404 on wrong id', (done) => {
+		request(app)
+			.get(`/todos/${new ObjectID().toHexString()}`)
+			.expect(400)
+			.end(done());
+	});
 });
-
-
-
