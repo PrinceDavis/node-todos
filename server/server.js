@@ -44,7 +44,7 @@ app.get('/todos/:id', authenticate, (req, res) => {
 	if (!ObjectID.isValid(id)) {
 		return res.status(400).send({errorMessage: 'the given id is invalid'});
 	}
-	Todo.fineOne({
+	Todo.findOne({
 		_id: id,
 		_creator: req.user._id
 	}).then((todo) => {
@@ -52,7 +52,7 @@ app.get('/todos/:id', authenticate, (req, res) => {
 			return res.status(400).send({errorMessage: 'todo not found'});
 		}
 		return res.send({todo});
-	}).catch((err) => res.status(400).send({errorMessage: 'todo not found'}));
+	}).catch((err) => res.status(400).send(r));
 });
 
 //deleting todo
