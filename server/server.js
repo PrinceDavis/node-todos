@@ -15,6 +15,8 @@ const port = process.env.PORT || 8000;
 
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => res.send('welcome to todo api'))
+
 app.post('/todos', authenticate, (req, res) =>{
 	const todo = new Todo({
 		text: req.body.text,
