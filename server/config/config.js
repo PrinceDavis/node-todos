@@ -6,3 +6,4 @@ if (env === 'development' || env === 'test') {
 	 process.env[key] = envConfig[key];
  });
 }
+console.log(process.env.JWT_SECRET);

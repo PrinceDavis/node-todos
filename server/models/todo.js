@@ -1,5 +1,4 @@
 /*jshint esversion: 6 */
-
 const mongoose = require('mongoose');
 const Todo = mongoose.model('Todo', {
 	text:{
@@ -18,7 +17,7 @@ const Todo = mongoose.model('Todo', {
 	},
 	_creator: {
 		type: mongoose.Schema.Types.ObjectId,
-		required: true
+		required: true`
 	}
 });
 

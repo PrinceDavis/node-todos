@@ -52,7 +52,7 @@ app.get('/todos/:id', authenticate, (req, res) => {
 			return res.status(400).send({errorMessage: 'todo not found'});
 		}
 		return res.send({todo});
-	}).catch((err) => res.status(400).send(r));
+	}).catch((err) => res.status(400).send({errorMessage: 'todo not found'}));
 });
 
 //deleting todo
@@ -115,7 +115,7 @@ app.get('/users', (req, res) => {
 	User.find().then((users) => {
 		res.send(users);
 	}).catch((err) => res.status(400).send(err));
-})
+});
 
 
 //get a users things
@@ -129,8 +129,8 @@ app.post('/users/login', (req, res) => {
 	User.findByCredentials(body.email, body.password).then((user) =>{
 		return user.generateAuthToken().then((token) =>{
 			res.header('x-auth', token).send(user);
-		})
-	}).catch((err) => {res.status(400).send(err)});
+		});
+	}).catch((err) => {res.status(400).send(err);});
 });
 
 //logout user

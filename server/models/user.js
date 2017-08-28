@@ -43,7 +43,7 @@ UserSchema.methods.toJSON = function () {
 	let user = this;
 	let userObject = user.toObject();
 	return _.pick(userObject, ['id', 'email', 'name']);
-}
+};
 
 UserSchema.methods.generateAuthToken = function () {
 	let access = 'auth';
@@ -53,7 +53,7 @@ UserSchema.methods.generateAuthToken = function () {
 	return user.save().then(() => {
 		return token;
 	});
-}
+};
 
 UserSchema.methods.removeToken = function (token) {
 	var user = this;
@@ -62,12 +62,12 @@ UserSchema.methods.removeToken = function (token) {
 			tokens: {token}
 		}
 	});
-}
+};
 
 //model methods
 UserSchema.statics.findByToken = function (token) {
 	let User = this;
-	let decoded = undefined;
+	let decoded = null;
 
 	try {
 		decoded = jwt.verify(token, process.env.JWT_SECRET);
@@ -80,7 +80,7 @@ UserSchema.statics.findByToken = function (token) {
 		'tokens.token': token,
 		'tokens.access': 'auth'
 	});
-}
+};
 
 UserSchema.statics.findByCredentials = function (email, password) {
 	let user = this;
@@ -95,10 +95,10 @@ UserSchema.statics.findByCredentials = function (email, password) {
 				}else{
 					reject();
 				}
-			})
-		})
-	})
-}
+			});
+		});
+	});
+};
 
 UserSchema.pre('save', function (next) {
 	let user = this;
@@ -108,11 +108,11 @@ UserSchema.pre('save', function (next) {
 				user.password = hash;
 				next();
 			});
-		})
+		});
 	}else{
 		next();
 	}
-})
+});
 const User = mongoose.model('user', UserSchema);
 
 module.exports = {User};
