@@ -23,7 +23,7 @@ The following component is required to set up the app on any system.
 
 ### Run locally ###
 
-* Clone bitbucket repository: `https://github.com/PrinceDavis/tg-chat.git`
+* Clone  repository: `git clone https://github.com/PrinceDavis/tg-chat.git`
 * Switch into project directory: `cd tg-chat/`
 * Install dependencies: `npm install`
 * Start web server: `vagrant up`
