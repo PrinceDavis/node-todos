@@ -15,7 +15,7 @@ A webservice for performing crude on todo items built using express as http serv
 * [Delete /todos/:id](https://tg-node-todo.herokuapp.com/todos) Delete an item, Authentication required
 * [Patch /todos/:id](https://tg-node-todo.herokuapp.com/todos) Update an item, Authentication required
 
-### Setup Requirement ###
+### Optional Setup Requirement ###
 The following component is required to set up the app on any system.
 
 * [ossaijad/node-ready](https://app.vagrantup.com/ossaijad/boxes/node-ready) A vagrant box with configured for developing node application.
